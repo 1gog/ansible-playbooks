@@ -1,0 +1,31 @@
+{# разворачивает структуру #}
+
+{# dataset 
+ch:
+ shard0:
+  - item0
+  - item1
+  - item2
+ shard1:
+  - item0
+  - item1
+  - item2 
+ shard3:
+  - item0
+  - item1
+  - item2
+  #}
+  
+  <remote_servers>     
+        <analytics_cluster>
+{% for shard in clickhouse_nodes. %}            
+            <shard>
+                <replica>
+
+                    <host>{{ node }}</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+{% endfor %}
+        </analytics_cluster>
+    </remote_servers>
